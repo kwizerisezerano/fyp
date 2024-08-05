@@ -51,47 +51,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Contribution</title>
+    <title>IZU MIS - Edit Contribution</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .content {
+            padding: 20px;
+            width: 100%;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-5">
-    <h2>Edit Contribution</h2>
-    <form action="edit_contribution.php?id=<?php echo $contribution_id; ?>" method="POST">
-        <div class="form-group">
-            <label for="member_id">Member</label>
-            <select id="member_id" name="member_id" class="form-control" required>
-                <?php foreach ($members as $member): ?>
-                    <option value="<?php echo $member['id']; ?>" <?php echo $member['id'] == $contribution['member_id'] ? 'selected' : ''; ?>>
-                        <?php echo htmlspecialchars($member['username']); ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+    <div class="content">
+        <div class="header">
+            <h2>IZU MIS - Edit Contribution</h2>
         </div>
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="number" id="amount" name="amount" class="form-control" value="<?php echo htmlspecialchars($contribution['amount']); ?>" required>
+        <div class="card">
+            <form action="edit_contribution.php?id=<?php echo $contribution_id; ?>" method="POST">
+                <div class="form-group">
+                    <label for="member_id">Member</label>
+                    <select id="member_id" name="member_id" class="form-control" required>
+                        <?php foreach ($members as $member): ?>
+                            <option value="<?php echo $member['id']; ?>" <?php echo $member['id'] == $contribution['member_id'] ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($member['username']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" name="amount" class="form-control" value="<?php echo htmlspecialchars($contribution['amount']); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="contribution_date">Date</label>
+                    <input type="date" id="contribution_date" name="contribution_date" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Contribution</button>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="contribution_date">Date</label>
-            <input type="date" id="contribution_date" name="contribution_date" class="form-control" readonly>
-        </div>
-        <button type="submit" class="btn btn-success">Update Contribution</button>
-    </form>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var today = new Date().toISOString().split('T')[0];
-        var dateInput = document.getElementById('contribution_date');
-        dateInput.value = today;
-        dateInput.setAttribute('min', today);
-        dateInput.setAttribute('max', today);
-    });
-</script>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

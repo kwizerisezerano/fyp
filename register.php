@@ -59,13 +59,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->execute()) {
             // Redirect based on type
             if ($type === 'Admin') {
-                echo "<script>alert('Admin registered successfully!'); window.location.href = 'admindashboard.php';</script>";
+                echo "<script>alert('Admin registered successfully!'); window.location.href = 'manage_members.php';</script>";
             } else {
-                echo "<script>alert('Member registered successfully!'); window.location.href = 'admindashboard.php';</script>";
+                echo "<script>alert('Member registered successfully!'); window.location.href = 'manage_members.php';</script>";
             }
         } else {
             $errorInfo = $stmt->errorInfo();
-            echo "<script>alert('Registration failed: " . $errorInfo[2] . "'); window.location.href = 'formregister.php';</script>";
+            echo "<script>alert('Registration failed: " . $errorInfo[2] . "'); window.location.href = 'add_member.php';</script>";
         }
     }
 }

@@ -49,17 +49,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Penalty</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header {
+            background-color: #007bff; /* Consistent with edit_contribution.php */
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 <div class="container mt-5">
-    <h2>Edit Penalty</h2>
+    <div class="header">
+        <h2>IZU MIS - Edit Penalty</h2>
+    </div>
     <a href="manage_penalties.php" class="btn btn-primary mb-3">Back to Manage Penalties</a>
     <form action="" method="POST">
         <div class="form-group">
             <label for="member_id">Member</label>
             <select id="member_id" name="member_id" class="form-control" required>
                 <?php foreach ($members as $member): ?>
-                    <option value="<?php echo $member['id']; ?>" <?php if ($member['id'] == $penalty['member_id']) echo 'selected'; ?>><?php echo htmlspecialchars($member['username']); ?></option>
+                    <option value="<?php echo $member['id']; ?>" <?php if ($member['id'] == $penalty['member_id']) echo 'selected'; ?>>
+                        <?php echo htmlspecialchars($member['username']); ?>
+                    </option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -75,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <label for="reason">Reason</label>
             <textarea id="reason" name="reason" class="form-control" required><?php echo htmlspecialchars($penalty['reason']); ?></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Update Penalty</button>
+        <button type="submit" class="btn btn-primary">Update Penalty</button>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
