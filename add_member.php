@@ -23,7 +23,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .form-container {
-            max-width: 500px; /* Adjusted width */
+            max-width: 500px;
             margin: 0 auto;
         }
     </style>
@@ -49,10 +49,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="phone_number">Phone Number</label>
-                                <input type="text" class="form-control" id="phone_number" name="phone_number" required
-       pattern="^(078|079|073|072)\d{7}$" title="Phone number must start with 078, 079, 073, or 072 and be exactly 10 digits" 
-       maxlength="10" minlength="10">
-
+                                <input type="text" class="form-control" id="phone_number" name="phone_number" required pattern="^(078|079|073|072)\d{7}$" title="Phone number must start with 078, 079, 073, or 072 and be exactly 10 digits" maxlength="10" minlength="10">
                             </div>
                             <div class="form-group">
                                 <label for="type">Role</label>
@@ -67,7 +64,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="join_date">Join Date</label>
-                                <input type="date" class="form-control" id="join_date" name="join_date" required>
+                                <input type="date" class="form-control" id="join_date" name="join_date" required readonly>
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
@@ -77,13 +74,23 @@
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password" required pattern="\d{5}" title="Five digits only">
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                            <button type="submit" class="btn btn-primary btn-block">Add Member</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Set join date to current date and make it readonly
+        document.addEventListener('DOMContentLoaded', function() {
+            var today = new Date().toISOString().split('T')[0];
+            var joinDateInput = document.getElementById('join_date');
+            joinDateInput.value = today;
+            joinDateInput.readOnly = true;
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

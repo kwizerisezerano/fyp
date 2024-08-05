@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validate the type
     if ($type !== 'Admin' && $type !== 'Member') {
-        echo "<script>alert('Invalid type. Please choose Admin or Member.'); window.location.href = 'formregister.php';</script>";
+        echo "<script>alert('Invalid type. Please choose Admin or Member.'); window.location.href = 'add_member.php';</script>";
         exit;
     }
 
@@ -34,10 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($phoneNumberCount > 0) {
         // Phone number already exists
-        echo "<script>alert('Phone number already registered. Please use a different phone number.'); window.location.href = 'formregister.php';</script>";
+        echo "<script>alert('Phone number already registered. Please use a different phone number.'); window.location.href = 'add_member.php';</script>";
     } elseif ($usernameCount > 0) {
         // Username already exists
-        echo "<script>alert('Username already registered. Please use a different username.'); window.location.href = 'formregister.php';</script>";
+        echo "<script>alert('Username already registered. Please use a different username.'); window.location.href = 'add_member.php';</script>";
     } else {
         // Hash the password
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($type === 'Admin') {
                 echo "<script>alert('Admin registered successfully!'); window.location.href = 'admindashboard.php';</script>";
             } else {
-                echo "<script>alert('Member registered successfully!'); window.location.href = 'memberdashboard.php';</script>";
+                echo "<script>alert('Member registered successfully!'); window.location.href = 'admindashboard.php';</script>";
             }
         } else {
             $errorInfo = $stmt->errorInfo();

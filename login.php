@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Valid credentials
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        $_SESSION['role'] = $user['role'];
+        $_SESSION['role'] = $user['type'];
 
-        if ($user['role'] === 'admin') {
-            echo "<script>alert('Login successful! Redirecting to admin dashboard.'); window.location.href = 'admin_dashboard.php';</script>";
+        if ($user['type'] === 'Admin') {
+            echo "<script>alert('Login successful! Redirecting to admin dashboard.'); window.location.href = 'admindashboard.php';</script>";
         } else {
-            echo "<script>alert('Login successful! Redirecting to member dashboard.'); window.location.href = 'member_dashboard.php';</script>";
+            echo "<script>alert('Login successful! Redirecting to member dashboard.'); window.location.href = 'memberdashboard.php';</script>";
         }
     } else {
         // Invalid credentials
@@ -31,4 +31,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
